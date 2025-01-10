@@ -67,6 +67,45 @@ func exec_sql_return_all_militares_turma(turma string) string {
 }
 
 
+//Função basica para simplificar a execução de comandos SQL para alterar valores, aqui o "tipo" vai definir se o update vai colocar aspas ou não para correta colocação de strings, vale lembrar que a key vai ser sempre o ID!
+func update_query(tipo string, tabela string, coluna string, novo_valor string, valor_id string) bool {
+	db, err := sql.Open("mysql", CONN_STRING_FOR_MANAGER)
+	defer db.Close()
+	if err != nil {
+		error_sql("RUN QUERY CONN")
+		panic(err)
+	}
+	err = db.Ping()
+	if err != nil {
+		error_sql("RUN QUERY PING")
+		panic(err)
+	} else {
+		f.Printf("[Conexão bem sucedida] ")
+	}
+	var result bool = false
+	if (tipo == "string") {
+		var comando string = f.Sprintf("ALTER TABLE %s SET %s='%s' WHERE %s=%s", tabela, coluna, novo_valor, valor_id)
+		_, err = db.Query(comando)
+		if err != nil {
+			error_sql("RUN QUERY EXEC")
+			panic(err)
+		} else {
+			result = true
+		}
+	} else {
+		var comando string = f.Sprintf("ALTER TABLE %s SET %s=%s WHERE %s=%s", tabela, coluna, novo_valor, valor_id)
+		_, err = db.Query(comando)
+		if err != nil {
+			error_sql("RUN QUERY EXEC")
+			panic(err)
+		} else {
+			result = true
+		}
+	}
+	return result
+}
+
+
 //Função basica para simplificar a execução de comandos SQL simples.
 func exec_query(comando string) bool {
 	db, err := sql.Open("mysql", CONN_STRING_FOR_MANAGER)

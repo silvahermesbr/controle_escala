@@ -35,7 +35,7 @@ func checkTables() {
 	const check_tabela_tipos_sv string = "CREATE TABLE IF NOT EXISTS tipos_sv (id INTEGER PRIMARY KEY AUTO_INCREMENT, descricao TEXT);"
 	var checks = [3]string{check_tabela_militares, check_tabela_registros, check_tabela_tipos_sv}
 	for index, comando := range checks {
-		f.Printf("Verificando " + STD_TABLES[index] + ": ")  
+		f.Printf("Verificando " + STD_TABLES[index] + "\t")  
 		result := exec_query(comando)
 		if result != false {
 			f.Printf("OK!\n");

@@ -47,3 +47,9 @@ func militaresDelete(id string) bool {
 	}
 	return result
 }
+
+//Retorna um objeto com todas as info necessarias. //NÃO FINALIZADO:
+func query_individual(id string) militar {
+	var infos militar
+	return infos
+}

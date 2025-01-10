@@ -14,7 +14,6 @@ func menuPessoal(turma string) {
 		f.Scan(&turma)
 	}
 	screen.Clear()
-	f.Println(DASH)
 	f.Println("Visão geral")
 	f.Println(DASH)
 	f.Printf("Carregando...\r")
@@ -66,7 +65,10 @@ func menuPessoal(turma string) {
 		}
 		menuPessoal(turma)
 	} else if (choice == "2") {
-		//FALTA FAZER O UPDATE
+		f.Printf("Por Favor digite o ID do registro que você deseja alterar: ")
+		var id string
+		f.Scan(&id)
+		//NÃO FINALIZAR (PAREI EM MILITARES.GO TAMBEM!)
 	} else if (choice == "3") {
 		f.Printf("Por Favor digite o ID do registro que você deseja remover da tabela: ")
 		var id string
